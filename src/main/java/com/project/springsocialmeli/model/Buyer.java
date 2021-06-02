@@ -12,8 +12,9 @@ public class Buyer {
     String name;
     List<Seller> following = new ArrayList<>();
 
-    public Buyer(String name){
+    public Buyer(String name, int id){
         this.name = name;
+        this.id = id;
     }
 
     public void follow(Seller seller){
