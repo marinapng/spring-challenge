@@ -85,6 +85,11 @@ public class SocialMeliService {
         return null;
     }
 
+    public Seller getSellerFollowers(int sellerId){
+        Seller s = getSellerById(sellerId);
+        s.getFollowersCount();
+        return s;
+    }
 
 
 }

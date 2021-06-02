@@ -10,6 +10,7 @@ public class Seller {
     int id;
     String name;
     List<Buyer> followers;
+    int followers_count;
 
     public Seller(String name, int id){
         this.name = name;
@@ -32,5 +33,10 @@ public class Seller {
 
     public String getName(){
         return this.name;
+    }
+
+    public int getFollowersCount(){
+        this.followers_count = this.followers.size();
+        return this.followers_count;
     }
 }

@@ -10,6 +10,7 @@ public class SellerDTO {
 
     String name;
     int id;
+    int followers_count;
     List<Buyer> followers;
 
 

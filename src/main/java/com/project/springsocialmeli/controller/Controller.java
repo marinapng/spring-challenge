@@ -1,5 +1,6 @@
 package com.project.springsocialmeli.controller;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.project.springsocialmeli.dto.BuyerDTO;
 
 import com.project.springsocialmeli.dto.FollowDTO;
@@ -56,5 +57,16 @@ public class Controller {
             sDto.setFollowers(s.getFollowers());
         }
         return sDto;
+    }
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @GetMapping("/seller/{sellerId}/followers/count")
+    public SellerDTO getSellerFollowers(@PathVariable int sellerId){
+        Seller s = socialMeliService.getSellerFollowers(sellerId);
+        SellerDTO sDTO = new SellerDTO();
+        sDTO.setFollowers_count(s.getFollowers_count());
+        sDTO.setName(s.getName());
+        sDTO.setId(s.getId());
+        return sDTO;
     }
 }
