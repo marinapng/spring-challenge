@@ -55,6 +55,11 @@ public class SocialMeliService {
         return null;
     }
 
+    public Buyer getBuyerFollowing(int buyerId){
+        Buyer b = getBuyerById(buyerId);
+        return b;
+    }
+
 
     //// SELLER
 
@@ -79,6 +84,7 @@ public class SocialMeliService {
     public Seller getSellerById(int sellerId){
         for(Seller s : sellers){
             if(s.getId() == sellerId){
+
                 return s;
             }
         }
@@ -90,6 +96,5 @@ public class SocialMeliService {
         s.getFollowersCount();
         return s;
     }
-
 
 }

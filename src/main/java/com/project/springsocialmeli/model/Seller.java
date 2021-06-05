@@ -1,16 +1,18 @@
 package com.project.springsocialmeli.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Seller {
     int id;
     String name;
     List<Buyer> followers;
-    int followers_count;
+    Integer followers_count;
 
     public Seller(String name, int id){
         this.name = name;
@@ -35,8 +37,16 @@ public class Seller {
         return this.name;
     }
 
-    public int getFollowersCount(){
+    public void getFollowersCount(){
         this.followers_count = this.followers.size();
-        return this.followers_count;
+    }
+
+    public List<Buyer> getFollowersList(){
+        List<Buyer> buyers = new ArrayList<>();
+        for(Buyer b : followers){
+            Buyer toAdd = new Buyer(b.getName(), b.getId());
+            buyers.add(toAdd);
+        }
+        return buyers;
     }
 }
