@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -12,7 +13,10 @@ import java.time.LocalDateTime;
 public class PostRequestDTO {
 
     int sellerId;
-    String data;
+
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    LocalDate date;
+
     String productName;
     String productType;
     String productBrand;

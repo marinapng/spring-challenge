@@ -96,7 +96,8 @@ public class Controller {
          pDTO.setDetail(p.getDetail());
          pDTO.setPrice(p.getPrice());
          pDTO.setSellerId(p.getSellerId());
-         pDTO.setData(p.getData());
+         pDTO.setDate(p.getDate());
+         System.out.println(p.getDate());
          return pDTO;
 
     }

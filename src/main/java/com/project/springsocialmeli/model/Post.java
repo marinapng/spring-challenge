@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import org.apache.tomcat.jni.Local;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -16,12 +17,13 @@ public class Post {
     Product detail;
     int category;
     double price;
-    String data;
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    LocalDate date;
 
-    public Post(int id, Product detail, String data){
+    public Post(int id, Product detail, LocalDate date){
         this.id = id;
         this.detail = detail;
-        this.data = data;
+        this.date = date;
 
     }
 }

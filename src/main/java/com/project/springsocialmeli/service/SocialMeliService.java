@@ -8,6 +8,8 @@ import com.project.springsocialmeli.model.Seller;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -70,9 +72,13 @@ public class SocialMeliService {
             List<Post> sPosts = s.getPosts();
             posts.addAll(sPosts);
         }
+        posts.sort((c1, c2) -> {
+            if (c1.getDate().isBefore(c2.getDate())) return -1;
+            else return 1;
+        });
+
         return posts;
     }
-
 
     //// SELLER
 
@@ -111,11 +117,12 @@ public class SocialMeliService {
     }
 
     public Post createPost(PostRequestDTO postRequestDTO){
+        System.out.println(postRequestDTO.getDate());
         Product product = new Product(this.products.size() + 1, postRequestDTO.getProductName(),
                                         postRequestDTO.getProductType(), postRequestDTO.getProductBrand(),
                                         postRequestDTO.getProductColor(), postRequestDTO.getProductNotes());
         this.products.add(product);
-        Post post = new Post(this.posts.size() + 1, product, postRequestDTO.getData());
+        Post post = new Post(this.posts.size() + 1, product, postRequestDTO.getDate());
         this.posts.add(post);
         Seller s = getSellerById(postRequestDTO.getSellerId());
         return s.createPost(post, product, postRequestDTO.getCategory(), postRequestDTO.getPrice());
