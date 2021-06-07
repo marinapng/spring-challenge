@@ -12,12 +12,16 @@ public class Seller {
     int id;
     String name;
     List<Buyer> followers;
+    List<Post> posts;
+    List<Product> products;
     Integer followers_count;
 
     public Seller(String name, int id){
         this.name = name;
         this.id = id;
         followers = new ArrayList<>();
+        products = new ArrayList<>();
+        posts = new ArrayList<>();
     }
 
     public List<Buyer> getFollowers(){
@@ -49,4 +53,16 @@ public class Seller {
         }
         return buyers;
     }
+
+    public Post createPost(Post post, Product product, int category, double price){
+        post.setSellerId(this.id);
+        post.setCategory(category);
+        post.setPrice(price);
+        this.products.add(product);
+        this.posts.add(post);
+        return post;
+    }
+
+
+
 }

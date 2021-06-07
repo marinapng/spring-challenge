@@ -1,6 +1,9 @@
 package com.project.springsocialmeli.service;
 
+import com.project.springsocialmeli.dto.PostRequestDTO;
 import com.project.springsocialmeli.model.Buyer;
+import com.project.springsocialmeli.model.Post;
+import com.project.springsocialmeli.model.Product;
 import com.project.springsocialmeli.model.Seller;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +15,8 @@ public class SocialMeliService {
 
     List<Buyer> buyers = new ArrayList<>();
     List<Seller> sellers = new ArrayList<>();
-
-
+    List<Post> posts = new ArrayList<>();
+    List<Product> products = new ArrayList<>();
 
     ///// BUYER
 
@@ -56,8 +59,7 @@ public class SocialMeliService {
     }
 
     public Buyer getBuyerFollowing(int buyerId){
-        Buyer b = getBuyerById(buyerId);
-        return b;
+        return getBuyerById(buyerId);
     }
 
 
@@ -95,6 +97,17 @@ public class SocialMeliService {
         Seller s = getSellerById(sellerId);
         s.getFollowersCount();
         return s;
+    }
+
+    public Post createPost(PostRequestDTO postRequestDTO){
+        Product product = new Product(this.products.size() + 1, postRequestDTO.getProductName(),
+                                        postRequestDTO.getProductType(), postRequestDTO.getProductBrand(),
+                                        postRequestDTO.getProductColor(), postRequestDTO.getProductNotes());
+        this.products.add(product);
+        Post post = new Post(this.posts.size() + 1, product);
+        this.posts.add(post);
+        Seller s = getSellerById(postRequestDTO.getSellerId());
+        return s.createPost(post, product, postRequestDTO.getCategory(), postRequestDTO.getPrice());
     }
 
 }

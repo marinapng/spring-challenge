@@ -1,13 +1,10 @@
 package com.project.springsocialmeli.controller;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.project.springsocialmeli.dto.BuyerDTO;
+import com.project.springsocialmeli.dto.*;
 
-import com.project.springsocialmeli.dto.FollowDTO;
-import com.project.springsocialmeli.dto.SellerDTO;
 import com.project.springsocialmeli.model.Buyer;
 
+import com.project.springsocialmeli.model.Post;
 import com.project.springsocialmeli.model.Seller;
 import com.project.springsocialmeli.service.SocialMeliService;
 
@@ -88,5 +85,18 @@ public class Controller {
         bDTO.setName(b.getName());
         bDTO.setId(b.getId());
         return bDTO;
+    }
+
+    @PostMapping("/products/newpost")
+    public PostResponseDTO createPost(@RequestBody PostRequestDTO postRequestDTO){
+         Post p = socialMeliService.createPost(postRequestDTO);
+         PostResponseDTO pDTO = new PostResponseDTO();
+         pDTO.setPostId(p.getId());
+         pDTO.setCategory(p.getCategory());
+         pDTO.setDetail(p.getDetail());
+         pDTO.setPrice(p.getPrice());
+         pDTO.setSellerId(p.getSellerId());
+         return pDTO;
+
     }
 }
