@@ -51,6 +51,16 @@ public class SocialMeliService {
         return buyerAndSeller;
      }
 
+    public List<String> unfollow(int buyerId, int sellerId){
+        Buyer b = getBuyerById(buyerId);
+        Seller s = getSellerById(sellerId);
+        b.unfollow(s);
+        List<String> buyerAndSeller = new ArrayList<>();
+        buyerAndSeller.add(b.getName());
+        buyerAndSeller.add(s.getName());
+        return buyerAndSeller;
+    }
+
     public Buyer getBuyerById(int buyerId){
         for(Buyer b : buyers){
             if(b.getId() == buyerId){
@@ -117,7 +127,6 @@ public class SocialMeliService {
     }
 
     public Post createPost(PostRequestDTO postRequestDTO){
-        System.out.println(postRequestDTO.getDate());
         Product product = new Product(this.products.size() + 1, postRequestDTO.getProductName(),
                                         postRequestDTO.getProductType(), postRequestDTO.getProductBrand(),
                                         postRequestDTO.getProductColor(), postRequestDTO.getProductNotes());

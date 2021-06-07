@@ -25,6 +25,11 @@ public class Buyer {
         this.following.add(seller);
     }
 
+    public void unfollow(Seller seller){
+        seller.followers.remove(this);
+        this.following.remove(seller);
+    }
+
     public List<Seller> getFollowingList(){
         List<Seller> foll = new ArrayList<>();
         for(Seller s : following){

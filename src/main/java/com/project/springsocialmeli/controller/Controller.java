@@ -111,4 +111,13 @@ public class Controller {
         return pDTO;
 
     }
+
+    @PostMapping("/buyer/{buyerId}/unfollow/{sellerIdToUnfollow}")
+    public FollowDTO unfollow(@PathVariable int buyerId, @PathVariable int sellerIdToUnfollow){
+        List<String> names = socialMeliService.unfollow(buyerId, sellerIdToUnfollow);
+        FollowDTO fDTO = new FollowDTO();
+        fDTO.setSellerName(names.get(1));
+        fDTO.setBuyerName(names.get(0));
+        return fDTO;
+    }
 }
