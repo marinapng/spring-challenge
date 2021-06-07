@@ -96,7 +96,18 @@ public class Controller {
          pDTO.setDetail(p.getDetail());
          pDTO.setPrice(p.getPrice());
          pDTO.setSellerId(p.getSellerId());
+         pDTO.setData(p.getData());
          return pDTO;
+
+    }
+
+    @GetMapping("/products/followed/{buyerId}/list")
+    public PostListDTO getPostFromSellers(@PathVariable int buyerId){
+        List<Post> p = socialMeliService.getPostsFromFollowing(buyerId);
+        PostListDTO pDTO = new PostListDTO();
+        pDTO.setPosts(p);
+        pDTO.setBuyerId(buyerId);
+        return pDTO;
 
     }
 }

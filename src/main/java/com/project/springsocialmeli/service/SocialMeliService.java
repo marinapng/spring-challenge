@@ -62,6 +62,17 @@ public class SocialMeliService {
         return getBuyerById(buyerId);
     }
 
+    public List<Post> getPostsFromFollowing(int buyerId){
+        List<Post> posts = new ArrayList<>();
+        Buyer b = getBuyerById(buyerId);
+        List<Seller> following = b.getFollowing();
+        for(Seller s: following){
+            List<Post> sPosts = s.getPosts();
+            posts.addAll(sPosts);
+        }
+        return posts;
+    }
+
 
     //// SELLER
 
@@ -104,7 +115,7 @@ public class SocialMeliService {
                                         postRequestDTO.getProductType(), postRequestDTO.getProductBrand(),
                                         postRequestDTO.getProductColor(), postRequestDTO.getProductNotes());
         this.products.add(product);
-        Post post = new Post(this.posts.size() + 1, product);
+        Post post = new Post(this.posts.size() + 1, product, postRequestDTO.getData());
         this.posts.add(post);
         Seller s = getSellerById(postRequestDTO.getSellerId());
         return s.createPost(post, product, postRequestDTO.getCategory(), postRequestDTO.getPrice());
