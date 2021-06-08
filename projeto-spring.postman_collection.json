@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "df826bc6-a251-404b-8241-2063a39508c4",
+		"name": "projeto-spring",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create buyer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/buyer/createBuyer?name=buyer1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"buyer",
+						"createBuyer"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "buyer1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create seller",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/seller/createSeller?name=seller1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"seller",
+						"createSeller"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "seller1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "follow seller - US0001",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/buyer/1/follow/2/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"buyer",
+						"1",
+						"follow",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get seller followers count - US0002",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/seller/1/followers/count",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"seller",
+						"1",
+						"followers",
+						"count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get seller followed list - US0003 and US0008",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/seller/1/followers/list?order=name_asc",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"seller",
+						"1",
+						"followers",
+						"list"
+					],
+					"query": [
+						{
+							"key": "order",
+							"value": "name_asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get buyer following list - US0004 and US0008",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/buyer/1/following/list",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"buyer",
+						"1",
+						"following",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new seller's post US0005",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"sellerId\": \"1\",\n    \"data\": \"12-12-2020\",\n    \"productName\": \"teste\",\n    \"productType\": \"tipo teste\",\n    \"productBrand\": \"marca teste\",\n    \"productColor\": \"cor teste\",\n    \"productNotes\": \"notes teste\",\n    \"category\": \"2\",\n    \"price\": \"20.0\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/products/newpost",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"newpost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get following posts - US0006 and US0009",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/products/followed/1/list",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"followed",
+						"1",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "unfollow seller - US0007",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/buyer/1/unfollow/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"buyer",
+						"1",
+						"unfollow",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new seller promo post - US0010",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"sellerId\": \"1\",\n    \"date\": \"12-12-2018\",\n    \"productName\": \"produto1\",\n    \"productType\": \"tipo teste\",\n    \"productBrand\": \"marca teste\",\n    \"productColor\": \"cor teste\",\n    \"productNotes\": \"notes teste\",\n    \"category\": \"2\",\n    \"price\": \"20.0\",\n    \"haspromo\": \"true\",\n    \"discount\": \"0.25\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/products/newpromopost",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"newpromopost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get promo products count - US0011",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/products/1/countPromo/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"1",
+						"countPromo",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get promo post list - US0012",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/products/1/list/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"1",
+						"list",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
