@@ -24,5 +24,7 @@ public class PostRequestDTO {
     String productNotes;
     int category;
     double price;
+    Boolean hasPromo;
+    Double discount;
 
 }

@@ -101,6 +101,22 @@ public class Controller {
 
     }
 
+    @PostMapping("/products/newpromopost")
+    public PostResponseDTO createPromoPost(@RequestBody PostRequestDTO postRequestDTO){
+        Post p = socialMeliService.createPromoPost(postRequestDTO);
+        PostResponseDTO pDTO = new PostResponseDTO();
+        pDTO.setPostId(p.getId());
+        pDTO.setCategory(p.getCategory());
+        pDTO.setDetail(p.getDetail());
+        pDTO.setPrice(p.getPrice());
+        pDTO.setSellerId(p.getSellerId());
+        pDTO.setDate(p.getDate());
+        pDTO.setHasPromo(p.getHasPromo());
+        System.out.println(p.getHasPromo());
+        pDTO.setDiscount(p.getDiscount());
+        return pDTO;
+    }
+
     @GetMapping("/products/followed/{buyerId}/list")
     public PostListDTO getPostFromSellers(@PathVariable int buyerId, @RequestParam String order){
         List<Post> p = socialMeliService.getPostsFromFollowing(buyerId, order);

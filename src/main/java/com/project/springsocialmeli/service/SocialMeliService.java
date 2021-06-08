@@ -161,4 +161,11 @@ public class SocialMeliService {
         return s.createPost(post, product, postRequestDTO.getCategory(), postRequestDTO.getPrice());
     }
 
+    public Post createPromoPost(PostRequestDTO postRequestDTO){
+        Post p = createPost(postRequestDTO);
+        p.setHasPromo(true);
+        p.setDiscount(postRequestDTO.getDiscount());
+        return p;
+    }
+
 }

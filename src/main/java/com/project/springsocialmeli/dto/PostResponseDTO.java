@@ -20,4 +20,6 @@ public class PostResponseDTO {
     Product detail;
     int category;
     double price;
+    Boolean hasPromo;
+    Double discount;
 }

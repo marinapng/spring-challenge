@@ -14,6 +14,7 @@ public class Product {
     String color;
     String notes;
 
+
     public Product(int id, String name, String type, String brand, String color, String notes){
         this.id = id;
         this.name = name;

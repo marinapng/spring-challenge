@@ -19,6 +19,8 @@ public class Post {
     double price;
     @JsonFormat(pattern = "dd-MM-yyyy")
     LocalDate date;
+    Boolean hasPromo;
+    Double discount;
 
     public Post(int id, Product detail, LocalDate date){
         this.id = id;
