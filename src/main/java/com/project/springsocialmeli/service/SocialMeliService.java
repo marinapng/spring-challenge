@@ -70,11 +70,20 @@ public class SocialMeliService {
         return null;
     }
 
-    public Buyer getBuyerFollowing(int buyerId){
-        return getBuyerById(buyerId);
+    public Buyer getBuyerFollowing(int buyerId, String order){
+        Buyer b =  getBuyerById(buyerId);
+        if(order.equals("name_asc")){
+            b.getFollowing().sort(Comparator.comparing(Seller::getName));
+        }
+        if(order.equals("name_desc")){
+            b.getFollowing().sort(Comparator.comparing(Seller::getName).reversed());
+        }
+        System.out.println(order);
+        System.out.println(b.getFollowingList());
+        return b;
     }
 
-    public List<Post> getPostsFromFollowing(int buyerId){
+    public List<Post> getPostsFromFollowing(int buyerId, String order){
         List<Post> posts = new ArrayList<>();
         Buyer b = getBuyerById(buyerId);
         List<Seller> following = b.getFollowing();
@@ -82,10 +91,18 @@ public class SocialMeliService {
             List<Post> sPosts = s.getPosts();
             posts.addAll(sPosts);
         }
-        posts.sort((c1, c2) -> {
-            if (c1.getDate().isBefore(c2.getDate())) return -1;
-            else return 1;
-        });
+        if(order.equals("date_asc")){
+            posts.sort((c1, c2) -> {
+                if (c1.getDate().isBefore(c2.getDate())) return -1;
+                else return 1;
+            });
+        }
+        if(order.equals("date_desc")){
+            posts.sort((c1, c2) -> {
+                if (c1.getDate().isAfter(c2.getDate())) return -1;
+                else return 1;
+            });
+        }
 
         return posts;
     }
@@ -120,9 +137,16 @@ public class SocialMeliService {
         return null;
     }
 
-    public Seller getSellerFollowers(int sellerId){
+    public Seller getSellerFollowers(int sellerId, String order){
         Seller s = getSellerById(sellerId);
         s.getFollowersCount();
+        if(order.equals("name_asc")){
+            s.getFollowersList().sort(Comparator.comparing(Buyer::getName));
+        }
+        if(order.equals("name_desc")){
+            s.getFollowersList().sort(Comparator.comparing(Buyer::getName).reversed());
+        }
+
         return s;
     }
 

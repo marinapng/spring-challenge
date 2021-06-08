@@ -59,7 +59,7 @@ public class Controller {
 
     @GetMapping("/seller/{sellerId}/followers/count")
     public SellerDTO getSellerFollowersCount(@PathVariable int sellerId){
-        Seller s = socialMeliService.getSellerFollowers(sellerId);
+        Seller s = socialMeliService.getSellerFollowers(sellerId, "");
         SellerDTO sDTO = new SellerDTO();
         sDTO.setFollowers_count(s.getFollowers_count());
         sDTO.setName(s.getName());
@@ -68,8 +68,8 @@ public class Controller {
     }
 
     @GetMapping("/seller/{sellerId}/followers/list")
-    public SellerDTO getSellerFollowersList(@PathVariable int sellerId){
-        Seller s = socialMeliService.getSellerFollowers(sellerId);
+    public SellerDTO getSellerFollowersList(@PathVariable int sellerId, @RequestParam String order){
+        Seller s = socialMeliService.getSellerFollowers(sellerId, order);
         SellerDTO sDTO = new SellerDTO();
         sDTO.setName(s.getName());
         sDTO.setId(s.getId());
@@ -78,8 +78,8 @@ public class Controller {
     }
 
     @GetMapping("/buyer/{buyerId}/following/list")
-    public BuyerDTO getBuyerFollowing(@PathVariable int buyerId){
-        Buyer b = socialMeliService.getBuyerFollowing(buyerId);
+    public BuyerDTO getBuyerFollowing(@PathVariable int buyerId, @RequestParam String order ){
+        Buyer b = socialMeliService.getBuyerFollowing(buyerId, order);
         BuyerDTO bDTO = new BuyerDTO();
         bDTO.setFollowing(b.getFollowingList());
         bDTO.setName(b.getName());
@@ -97,14 +97,13 @@ public class Controller {
          pDTO.setPrice(p.getPrice());
          pDTO.setSellerId(p.getSellerId());
          pDTO.setDate(p.getDate());
-         System.out.println(p.getDate());
          return pDTO;
 
     }
 
     @GetMapping("/products/followed/{buyerId}/list")
-    public PostListDTO getPostFromSellers(@PathVariable int buyerId){
-        List<Post> p = socialMeliService.getPostsFromFollowing(buyerId);
+    public PostListDTO getPostFromSellers(@PathVariable int buyerId, @RequestParam String order){
+        List<Post> p = socialMeliService.getPostsFromFollowing(buyerId, order);
         PostListDTO pDTO = new PostListDTO();
         pDTO.setPosts(p);
         pDTO.setBuyerId(buyerId);
@@ -120,4 +119,6 @@ public class Controller {
         fDTO.setBuyerName(names.get(0));
         return fDTO;
     }
+
+
 }
