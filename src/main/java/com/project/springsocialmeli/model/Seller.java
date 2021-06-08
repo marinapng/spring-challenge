@@ -14,8 +14,10 @@ public class Seller {
     List<Buyer> followers;
     List<Post> posts;
     List<Product> products;
+    List<Post> promoProducts;
     Integer followers_count;
     Integer promoproducts_count;
+
 
     public Seller(String name, int id){
         this.name = name;
@@ -23,6 +25,7 @@ public class Seller {
         followers = new ArrayList<>();
         products = new ArrayList<>();
         posts = new ArrayList<>();
+        promoProducts = new ArrayList<>();
     }
 
     public List<Buyer> getFollowers(){
@@ -64,7 +67,7 @@ public class Seller {
         return post;
     }
 
-    public Integer countPromoProducts(){
+    public void countPromoProducts(){
         int count = 0 ;
         for(Post p : posts){
             if(p.getHasPromo() != null){
@@ -72,8 +75,13 @@ public class Seller {
             }
         }
         this.promoproducts_count = count;
-        return this.promoproducts_count;
     }
 
-
+    public void setPromoProductsList(){
+        for(Post p : posts){
+            if(p.getHasPromo() != null){
+                this.promoProducts.add(p);
+            }
+        }
+    }
 }

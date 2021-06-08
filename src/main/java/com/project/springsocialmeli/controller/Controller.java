@@ -121,7 +121,7 @@ public class Controller {
         List<Post> p = socialMeliService.getPostsFromFollowing(buyerId, order);
         PostListDTO pDTO = new PostListDTO();
         pDTO.setPosts(p);
-        pDTO.setBuyerId(buyerId);
+        pDTO.setId(buyerId);
         return pDTO;
 
     }
@@ -143,6 +143,16 @@ public class Controller {
         sDTO.setName(s.getName());
         sDTO.setId(s.getId());
         return sDTO;
+    }
+
+    @GetMapping("/products/{sellerId}/list/")
+    public PostListDTO getPromoProducts(@PathVariable int sellerId){
+        Seller s = socialMeliService.getPromoProductsList(sellerId);
+        PostListDTO pDTO = new PostListDTO();
+        pDTO.setId(s.getId());
+        pDTO.setPosts(s.getPromoProducts());
+        return pDTO;
+
     }
 
 

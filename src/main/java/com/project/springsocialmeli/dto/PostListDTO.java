@@ -10,6 +10,6 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class PostListDTO {
 
-    int buyerId;
+    int id;
     List<Post> posts;
 }

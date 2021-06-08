@@ -172,4 +172,10 @@ public class SocialMeliService {
         return s;
     }
 
+    public Seller getPromoProductsList(int sellerId){
+        Seller s = this.getSellerById(sellerId);
+        s.setPromoProductsList();
+        return s;
+    }
+
 }
