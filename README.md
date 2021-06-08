@@ -61,8 +61,8 @@
   
 #### Criação de uma publicação promocional por um vendedor
 - Para um vendedor criar a publicação de um produto é necessário usar a seguinte URL e o seguinte body  
-  #### `POST localhost:8080/products/newpromopost`
-  #### 
+  ##### `POST localhost:8080/products/newpromopost`
+  ##### 
       { 
         "sellerId": "1",
         "date": "12-12-2018",
