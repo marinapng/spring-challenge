@@ -78,8 +78,6 @@ public class SocialMeliService {
         if(order.equals("name_desc")){
             b.getFollowing().sort(Comparator.comparing(Seller::getName).reversed());
         }
-        System.out.println(order);
-        System.out.println(b.getFollowingList());
         return b;
     }
 
@@ -166,6 +164,12 @@ public class SocialMeliService {
         p.setHasPromo(true);
         p.setDiscount(postRequestDTO.getDiscount());
         return p;
+    }
+
+    public Seller countPromoProducts(int sellerId){
+        Seller s = getSellerById(sellerId);
+        s.countPromoProducts();
+        return s;
     }
 
 }

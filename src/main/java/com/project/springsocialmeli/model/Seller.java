@@ -15,6 +15,7 @@ public class Seller {
     List<Post> posts;
     List<Product> products;
     Integer followers_count;
+    Integer promoproducts_count;
 
     public Seller(String name, int id){
         this.name = name;
@@ -63,6 +64,16 @@ public class Seller {
         return post;
     }
 
+    public Integer countPromoProducts(){
+        int count = 0 ;
+        for(Post p : posts){
+            if(p.getHasPromo() != null){
+                count++;
+            }
+        }
+        this.promoproducts_count = count;
+        return this.promoproducts_count;
+    }
 
 
 }

@@ -14,6 +14,7 @@ public class SellerDTO {
     int id;
     Integer followers_count;
     List<Buyer> followers;
+    Integer promoproducts_count;
 
 
 }

@@ -112,7 +112,6 @@ public class Controller {
         pDTO.setSellerId(p.getSellerId());
         pDTO.setDate(p.getDate());
         pDTO.setHasPromo(p.getHasPromo());
-        System.out.println(p.getHasPromo());
         pDTO.setDiscount(p.getDiscount());
         return pDTO;
     }
@@ -134,6 +133,16 @@ public class Controller {
         fDTO.setSellerName(names.get(1));
         fDTO.setBuyerName(names.get(0));
         return fDTO;
+    }
+
+    @GetMapping("/products/{sellerId}/countPromo/")
+    public SellerDTO countPromoProducts(@PathVariable int sellerId){
+        Seller s = socialMeliService.countPromoProducts(sellerId);
+        SellerDTO sDTO = new SellerDTO();
+        sDTO.setPromoproducts_count(s.getPromoproducts_count());
+        sDTO.setName(s.getName());
+        sDTO.setId(s.getId());
+        return sDTO;
     }
 
 
